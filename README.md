@@ -15,7 +15,7 @@ $ npm install -g dep-validate
 Super easy, it's just the same interface as the JavaScript library (read up).
 
 ```bash
-$ dep-validate --allowHardcoded --dependencies '~' --devDependencies '^' --packageFile ./package.json --only production --only development
+$ dep-validate --dependencies '~' --devDependencies '^' --exclude pkg1 --exclude pkg2 --hardcoded=allow --only production --only development --packageFile ./package.json 
 ```
 
 The exit code will be a `1` in case of error, with a chart displaying errors. It'll be `0` on success with no output.
@@ -36,6 +36,7 @@ var opts = {
   allowHardcoded: true,                   // allow hardcoded versions without verification
   dependencies: '~',                      // the range to enforce on all "dependencies"
   devDependencies: '^',                   // the range to enforce on all "devDependencies"
+  exluded: [ 'my-package' ],              // packages to exclude from validation
   packageFile: './package.json',          // the package.json file to read and validate
   only: [ 'production', 'development' ]   // only check prod/dev dependencies
 }

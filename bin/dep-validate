@@ -8,24 +8,31 @@ function collect(val, only) {
   return only;
 }
 
+// define hardcoded verification
+function hardcoded(val) {
+  return val !== 'disallow';
+}
+
 // start our cli application
 var cli = require('commander');
 
 // define our interface
 cli
   .version(require('../package.json').version, '-v, --version')
-  .option('--allowHardcoded', 'Don\'t validate against hardcoded versions', undefined, undefined)
-  .option('--deps, --dependencies [range]', 'The range to enforce on production dependencies', undefined, undefined)
-  .option('--devDeps, --devDependencies [range]', 'The range to enforce on development dependencies', undefined, undefined)
-  .option('-o, --only [value]', 'Whether to only use production or development dependencies', collect, undefined)
-  .option('-p, --packageFile', 'The path to a package file to validate', undefined, undefined)
+  .option('--deps, --dependencies [range]', 'range to enforce on production dependencies', undefined, undefined)
+  .option('--devDeps, --devDependencies [range]', 'range to enforce on development dependencies', undefined, undefined)
+  .option('--hardcoded [value]', 'validate against hardcoded versions or not', hardcoded, undefined)
+  .option('-e, --exclude [value]', 'ependencies to exclude from validation', collect, undefined)
+  .option('-o, --only [value]', 'only use production or development dependencies', collect, undefined)
+  .option('-p, --packageFile', 'path to a package file to validate', undefined, undefined)
   .parse(process.argv);
 
 // validate using the provided options
 var results = dv.validate({
-  allowHardcoded: cli['allowHardcoded'],
+  allowHardcoded: cli['hardcoded'],
   dependencies: cli['dependencies'],
   devDependencies: cli['devDependencies'],
+  exclude: cli['exclude'],
   packageFile: cli['packageFile'],
   only: cli['only']
 });
