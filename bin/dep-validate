@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+var dv = require('../');
+
+// define our collection for 'only'
+function collect(val, only) {
+  only = only || [];
+  only.push(val);
+  return only;
+}
+
+// start our cli application
+var cli = require('commander');
+
+// define our interface
+cli
+  .version(require('../package.json').version, '-v, --version')
+  .option('--allowHardcoded', 'Don\'t validate against hardcoded versions', undefined, undefined)
+  .option('--deps, --dependencies [range]', 'The range to enforce on production dependencies', undefined, undefined)
+  .option('--devDeps, --devDependencies [range]', 'The range to enforce on development dependencies', undefined, undefined)
+  .option('-o, --only [value]', 'Whether to only use production or development dependencies', collect, undefined)
+  .option('-p, --packageFile', 'The path to a package file to validate', undefined, undefined)
+  .parse(process.argv);
+
+// validate using the provided options
+var results = dv.validate({
+  allowHardcoded: cli['allowHardcoded'],
+  dependencies: cli['dependencies'],
+  devDependencies: cli['devDependencies'],
+  packageFile: cli['packageFile'],
+  only: cli['only']
+});
+
+// check for errors
+var hasErrors = dv
+  .hasErrors(results);
+
+// log any errors as needed
+hasErrors && dv.log(results);
+
+// exit with error codes as needed
+process.exit(+!hasErrors);

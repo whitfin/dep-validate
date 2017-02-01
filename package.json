@@ -1,0 +1,37 @@
+{
+  "name": "dep-validate",
+  "version": "1.0.0",
+  "description": "Dependency verification for npm packages with Gulp support",
+  "author": {
+    "name": "Isaac Whitfield",
+    "email": "iw@zackehh.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/zackehh/dep-validate.git"
+  },
+  "bugs": {
+    "email": "iw@zackehh.com",
+    "url": "http://github.com/zackehh/dep-validate/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "keywords": [
+    "dependencies",
+    "validation",
+    "semver",
+    "package",
+    "npm"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "cli-table2": "^0.2.0",
+    "commander": "^2.9.0",
+    "gulp-util": "^3.0.8",
+    "package": "^1.0.1",
+    "through": "^2.3.8"
+  },
+  "bin": {
+    "dep-validate": "bin/dep-validate"
+  }
+}
