@@ -24,7 +24,7 @@ cli
   .option('--hardcoded [value]', 'validate against hardcoded versions or not', hardcoded, undefined)
   .option('-e, --exclude [value]', 'ependencies to exclude from validation', collect, undefined)
   .option('-o, --only [value]', 'only use production or development dependencies', collect, undefined)
-  .option('-p, --packageFile', 'path to a package file to validate', undefined, undefined)
+  .option('-p, --packageFile [file]', 'path to a package file to validate', undefined, undefined)
   .parse(process.argv);
 
 // validate using the provided options
@@ -45,4 +45,4 @@ var hasErrors = dv
 hasErrors && dv.log(results);
 
 // exit with error codes as needed
-process.exit(+!hasErrors);
+process.exit(+!!hasErrors);
