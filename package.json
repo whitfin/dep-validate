@@ -25,8 +25,8 @@
   ],
   "scripts": {},
   "dependencies": {
-    "cli-table2": "^0.2.0",
-    "commander": "^2.9.0",
+    "cli-table3": "^0.5.1",
+    "commander": "^2.19.0",
     "gulp-util": "^3.0.8",
     "package": "^1.0.1",
     "through": "^2.3.8"
