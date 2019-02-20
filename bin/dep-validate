@@ -10,7 +10,10 @@ function collect(val, only) {
 
 // define hardcoded verification
 function hardcoded(val) {
-  return val !== 'disallow';
+  if (val === 'disallow' || val === 'force') {
+    return val;
+  }
+  return undefined;
 }
 
 // start our cli application
@@ -29,10 +32,10 @@ cli
 
 // validate using the provided options
 var results = dv.validate({
-  allowHardcoded: cli['hardcoded'],
   dependencies: cli['dependencies'],
   devDependencies: cli['devDependencies'],
   exclude: cli['exclude'],
+  hardcoded: cli['hardcoded'],
   packageFile: cli['packageFile'],
   only: cli['only']
 });
