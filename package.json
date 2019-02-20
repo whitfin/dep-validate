@@ -1,6 +1,6 @@
 {
   "name": "dep-validate",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "description": "Dependency verification for npm packages with Gulp support",
   "author": {
     "name": "Isaac Whitfield",
