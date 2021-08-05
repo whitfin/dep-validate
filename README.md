@@ -1,9 +1,9 @@
 # dep-validate
 
-dep-validate is a tool used to verify the ranges on your npm dependencies. It can be used from the command line, from JavaScript, or from Gulp. It's available on npm, so just install it via:
+dep-validate is a tool used to verify the ranges on your npm dependencies. It can be used from the command line or from JavaScript. It's available on npm, so just install it via:
 
 ```
-# for gulp/node usage
+# for node usage
 $ npm install --save-dev dep-validate
 
 # for command line usage
@@ -22,9 +22,7 @@ The exit code will be a `1` in case of error, with a chart displaying errors. It
 
 ### Library Usages
 
-You can use the JavaScript library either directly in Node.js or via Gulp:
-
-##### JavaScript Interface
+You can use the JavaScript library directly in Node.js.
 
 All options are shown below and are the defaults (so they're used if not provided). The only exception is `file`, which will resolve the current `package.json` (by reading upwards in directory).
 
@@ -55,17 +53,3 @@ dv.pipe(opts, function (err) {
   // you can either inspect this manually, or log the entire error using `log(err)`
 })
 ```
-
-##### Gulp
-
-```javascript
-var dv = require('dep-validate');
-var gulp = require('gulp');
-
-gulp.task('deps:validate', function () {
-	gulp.src('./package.json', { read: false })
-		.pipe(dv.gulp());
-})
-```
-
-In addition to the options accepted by the JavaScript interface, `.gulp()` can also accept a `failOnError` option which will cause your Gulp task to cause an error if your dependencies do not satisfy your rules.
